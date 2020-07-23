@@ -1,0 +1,59 @@
+package com.galvanize.Plane.Models;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@RestController
+@RequestMapping("/plane")
+public class PlaneController {
+    public static PlaneRepo repository;
+
+    public PlaneController(PlaneRepo repository) {
+        PlaneController.repository = repository;
+    }
+    
+    
+    /*POST - input a flight to the database, show only pilot name, 
+             date/time of flight, from/to where the flight is going*/
+
+    @PostMapping("")
+    public Plane createPlane(@RequestBody Plane plane) {
+        return PlaneController.repository.save(plane);
+    }
+    //POST - "Assign" random unassigned pilot to flight.
+
+    
+    
+    @GetMapping("/{tailNumber}") 
+    public Plane getPlane(@PathVariable String tailNumber){
+        return PlaneController.repository.findById(tailNumber).orElse(null);
+    }
+
+    /*
+    @GetMapping("/getflight") 
+    public Iterable<Flights> getFlight(){
+        return FlightController.repository.findAll();
+    }*/
+
+    //DELETE a pilot from the pilots database
+    //DELETE - a flight
+
+
+    //PATCH - update who the pilot will be on the flight
+    //PATCH - update the date and time of a flight
+    //PATCH - which plane assigned to flight. Return updated flight
+    //PATCH - Add notes about a flight
+    //PATCH - Remove pilot from a flight
+
+    //GET - return all flights by pilot
+    //GET - return all flights by multiple pilots
+    //GET - return all flights by day
+
+    
+}
