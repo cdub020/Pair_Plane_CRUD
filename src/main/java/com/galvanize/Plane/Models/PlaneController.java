@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.*;
+
 @RestController
 @RequestMapping("/plane")
 public class PlaneController {
@@ -26,9 +28,13 @@ public class PlaneController {
     public Plane createPlane(@RequestBody Plane plane) {
         return PlaneController.repository.save(plane);
     }
-    //POST - "Assign" random unassigned pilot to flight.
 
     
+    
+    @GetMapping("/all") 
+    public Iterable<Plane> getPlanes(){
+        return PlaneController.repository.findAll();
+    }
     
     @GetMapping("/{tailNumber}") 
     public Plane getPlane(@PathVariable String tailNumber){
@@ -41,19 +47,9 @@ public class PlaneController {
         return FlightController.repository.findAll();
     }*/
 
-    //DELETE a pilot from the pilots database
-    //DELETE - a flight
 
 
-    //PATCH - update who the pilot will be on the flight
-    //PATCH - update the date and time of a flight
-    //PATCH - which plane assigned to flight. Return updated flight
-    //PATCH - Add notes about a flight
-    //PATCH - Remove pilot from a flight
 
-    //GET - return all flights by pilot
-    //GET - return all flights by multiple pilots
-    //GET - return all flights by day
 
     
 }
