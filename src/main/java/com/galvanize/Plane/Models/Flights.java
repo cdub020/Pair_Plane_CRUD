@@ -19,11 +19,11 @@ public class Flights {
     String planeTailNumber; //Plane tied to this flight.
     Long pilotId; //Pilot tied to this flight.
 
-    @Column(columnDefinition="date")
-    @JsonFormat(pattern="MM-dd-yyyy hh:mm:ss")
+    @Column(columnDefinition="datetime")
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     Date flightStartTime; //Take-off time.
-    @Column(columnDefinition="date")
-    @JsonFormat(pattern="MM-dd-yyyy hh:mm:ss")
+    @Column(columnDefinition="datetime")
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     Date flightArrivalTime; //Destination arrival time.
 
     String notes; //Notes on the flight, delimited by \n
@@ -55,18 +55,22 @@ public class Flights {
         this.pilotId = pilotId;
     }
 
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     public Date getFlightStartTime() {
         return flightStartTime;
     }
 
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     public void setFlightStartTime(Date flightStartTime) {
         this.flightStartTime = flightStartTime;
     }
 
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     public Date getFlightArrivalTime() {
         return flightArrivalTime;
     }
 
+    @JsonFormat(pattern="MM-dd-yyyy HH:mm:ss")
     public void setFlightArrivalTime(Date flightArrivalTime) {
         this.flightArrivalTime = flightArrivalTime;
     }
@@ -94,7 +98,5 @@ public class Flights {
     public void setInboundLoc(String inboundLoc) {
         this.inboundLoc = inboundLoc;
     }
-
-
 
 }

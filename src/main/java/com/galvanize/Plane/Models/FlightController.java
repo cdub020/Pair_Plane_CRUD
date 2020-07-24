@@ -22,6 +22,7 @@ public class FlightController {
     public Flights createFlight(@RequestBody Flights flights) {
         return FlightController.repository.save(flights);
     }
+
     @GetMapping("/{id}") 
     public Flights getFlight(@PathVariable Long id){
         return FlightController.repository.findById(id).orElse(null);
@@ -74,14 +75,14 @@ public class FlightController {
             Flights flight = FlightController.repository.findById(flightId).get();
             if (dates.containsKey("startTime")) {
                 try {
-                    flight.setFlightStartTime(new SimpleDateFormat("MM-dd-yyyy hh:mm:ss").parse(dates.get("startTime")));
+                    flight.setFlightStartTime(new SimpleDateFormat("MM-dd-yyyy HH:mm:ss").parse(dates.get("startTime")));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
             if (dates.containsKey("arrivalTime")) {
                 try {
-                    flight.setFlightArrivalTime(new SimpleDateFormat("MM-dd-yyyy hh:mm:ss").parse(dates.get("arrivalTime")));
+                    flight.setFlightArrivalTime(new SimpleDateFormat("MM-dd-yyyy HH:mm:ss").parse(dates.get("arrivalTime")));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -183,8 +184,4 @@ public class FlightController {
             }
             return FlightController.repository.save(tmpflight);
             }
-            
-
-
-        
 }
